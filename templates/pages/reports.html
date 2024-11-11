@@ -7,8 +7,30 @@
 <div>This is the reports page</div>
 
 {% if query %}
-    
+    {% if session.get('user_type') == 'admin' %}
+        <div>Received Reports</div>
+    {% else %}
+        <div>Sent Reports</div>
+    {% endif %}
 
+    <table>
+        <thead>
+            <tr>
+                {% for header in query[0].keys() %}
+                    <th>{{ header | capitalize }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in query %}
+                <tr>
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% else %}
 <p>Please login to use the features in this page.</p>

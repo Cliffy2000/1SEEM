@@ -34,7 +34,7 @@ def login():
 @app.route('/reports')
 def reports():
     if 'user_type' not in session:
-        return render_template('/pages/reports.html', user_type=session['user_type'])
+        return render_template('/pages/reports.html', user_type='')
 
     user_type = session['user_type']
     if user_type == 'user':
