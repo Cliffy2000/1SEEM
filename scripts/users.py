@@ -43,7 +43,7 @@ def get_user_type(username):
 
 def get_user_id(username):
     connection, cursor = connect_to_db()
-    sql_query = f"""SELECT user_id FROM t_user_info WHERE username = %s AND valid_flag = 1"""
+    sql_query = f"""SELECT id FROM t_user_info WHERE username = %s AND valid_flag = 1"""
 
     cursor.execute(sql_query, (username,))
     data = cursor.fetchone()
@@ -53,7 +53,7 @@ def get_user_id(username):
     
     if data is None:
         return None
-    return data['user_id']
+    return data['id']
 
 
 def create_user(username, password, email, user_type):
