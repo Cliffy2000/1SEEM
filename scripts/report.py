@@ -1,5 +1,5 @@
 from datetime import datetime
-from db import connect_to_db
+from scripts.db import connect_to_db
 
 def submit_report(sender, receiver, content, image=None):
     connection, cursor = connect_to_db()

@@ -1,7 +1,6 @@
 from scripts.users import create_user
 
 
-
 if __name__ == "__main__":
     create_user("user1", "user", "user1@m.com", "user")
     create_user("user2", "user", "user2@m.com", "user")

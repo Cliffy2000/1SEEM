@@ -1,5 +1,5 @@
 from datetime import datetime
-from db import connect_to_db
+from scripts.db import connect_to_db
 
 def check_user_exists(username):
     connection, cursor = connect_to_db()

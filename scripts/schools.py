@@ -1,4 +1,4 @@
-from db import select_school_info
+from scripts.db import select_school_info
 
 def get_all_schools_info(filter=None):
 

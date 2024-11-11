@@ -1,6 +1,6 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from config import db_config
+from scripts.config import db_config
 
 def connect_to_db():
     try:
