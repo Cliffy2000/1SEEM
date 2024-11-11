@@ -1,18 +1,12 @@
 import os
 from flask import Flask, session, render_template, request, redirect, url_for
 
-from scripts import db, users
+from scripts import db, users, report
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-
-
-users = {
-    'admin': {'password': 'admin', 'type': 'admin'},
-    'user': {'password': 'user', 'type': 'user'}
-}
 
 
 @app.route('/')
@@ -41,7 +35,16 @@ def login():
 
 @app.route('/reports')
 def reports():
-    return render_template('/pages/reports.html')
+    if 'user_type' not in session:
+        return render_template('/pages/reports.html', user_type=session['user_type'])
+
+    user_type = session['user_type']
+    if user_type == 'user':
+        query = report.get_report_by_sender(session['username'])
+    elif user_type == 'admin':
+        query = report.get_report_by_receiver(session['username'])
+    
+    return render_template('/pages/reports.html', query=query, user_type=user_type)
 
 
 @app.route('/search')

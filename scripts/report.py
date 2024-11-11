@@ -40,7 +40,7 @@ def get_report_by_sender(sender):
     return result
 
 def get_report_by_receiver(receiver):
-    # return the reports by a specific sender
+    # return the reports by a specific receiver
     connection, cursor = connect_to_db()
     sql_query = f"SELECT * FROM t_incident_reports WHERE receiver_id = {receiver}"
 
