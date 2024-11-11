@@ -16,6 +16,6 @@ if __name__ == "__main__":
     # submit_report("user1", "admin1", "report 1.3")
     # submit_report("user2", "admin1", "report 2.1")
     
-    users.get_user_id("user1")
+    print(users.get_user_id("user1"))
     
     pass
