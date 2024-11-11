@@ -39,9 +39,9 @@ def login():
     return render_template('/pages/login.html', show_login_box=False)
 
 
-@app.route('/mail')
-def mail():
-    return render_template('/pages/mail.html')
+@app.route('/reports')
+def reports():
+    return render_template('/pages/reports.html')
 
 
 @app.route('/search')

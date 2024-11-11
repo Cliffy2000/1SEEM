@@ -22,10 +22,27 @@ def submit_report(sender, receiver, content, image=None):
 
     return True
 
-def get_report(sender):
+def get_report_by_sender(sender):
     # return the reports by a specific sender
     connection, cursor = connect_to_db()
     sql_query = f"SELECT * FROM t_incident_reports WHERE sender_id = {sender}"
+
+    cursor.execute(sql_query)
+    data = cursor.fetchall()
+    result = []
+    for row in data:
+        row_res = {}
+        for key in row:
+            row_res[key] = row[key]
+        result.append(row_res)
+    cursor.close()
+    connection.close()
+    return result
+
+def get_report_by_receiver(receiver):
+    # return the reports by a specific sender
+    connection, cursor = connect_to_db()
+    sql_query = f"SELECT * FROM t_incident_reports WHERE receiver_id = {receiver}"
 
     cursor.execute(sql_query)
     data = cursor.fetchall()
