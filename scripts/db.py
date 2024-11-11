@@ -17,7 +17,7 @@ def select_school_info(filter=None):
     sql_query = """SELECT * FROM t_school_info"""
     conditions = []
     
-    if 'school' in filter:
+    if filter['school']:
         school = filter['school']
         conditions.append(f"name = '{school}'")
 
