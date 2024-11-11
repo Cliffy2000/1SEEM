@@ -20,12 +20,10 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        user = users.get(username)
-        # if user and user['password'] == password:
         user_check = users.authenticate_user(username, password)
         if user_check:
             session['username'] = username
-            session['user_type'] = user['type']
+            session['user_type'] = users.get_user_type(username)
             return redirect(url_for(('index')))   
 
         return render_template('/pages/login.html', show_login_box=False)
