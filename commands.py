@@ -1,4 +1,4 @@
-from scripts.users import create_user
+from scripts.users import create_user, get_user_type
 
 
 if __name__ == "__main__":

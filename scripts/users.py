@@ -38,7 +38,7 @@ def get_user_type(username):
     
     if data is None:
         return None
-    return data[0]
+    return data['user_type']
 
 
 def create_user(username, password, email, user_type):

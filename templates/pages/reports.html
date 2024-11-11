@@ -5,4 +5,14 @@
 
 {% block content %}
 <div>This is the reports page</div>
+
+{% if query %}
+    
+
+
+{% else %}
+<p>Please login to use the features in this page.</p>
+
+{% endif %}
+
 {% endblock %}
