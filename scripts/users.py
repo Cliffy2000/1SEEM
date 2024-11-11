@@ -41,6 +41,21 @@ def get_user_type(username):
     return data['user_type']
 
 
+def get_user_id(username):
+    connection, cursor = connect_to_db()
+    sql_query = f"""SELECT user_id FROM t_user_info WHERE username = %s AND valid_flag = 1"""
+
+    cursor.execute(sql_query, (username,))
+    data = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+    
+    if data is None:
+        return None
+    return data['user_id']
+
+
 def create_user(username, password, email, user_type):
     connection, cursor = connect_to_db()
     data = {
