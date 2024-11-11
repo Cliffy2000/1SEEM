@@ -72,12 +72,12 @@ def search():
     formatted_query = -1
     if request.method == "POST":
         query = db.select_school_info(filter={
-            'school': request.form.get('search_school_name') or None,
-            'district': request.form.get('search_distrct') or None,
-            'type': request.form.get('search_type') or None,
-            'level': request.form.get('search_level') or None,
+            'school': request.form.get('search_school_name').upper() or None,
+            'district': request.form.get('search_distrct').upper() or None,
+            'type': request.form.get('search_type').upper() or None,
+            'level': request.form.get('search_level').upper() or None,
             'bus_no': request.form.get('search_bus_no') or None,
-            'mrt': request.form.get('search_mrt') or None 
+            'mrt': request.form.get('search_mrt').upper() or None 
         })
                
         formatted_query = [{
