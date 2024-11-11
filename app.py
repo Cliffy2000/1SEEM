@@ -37,7 +37,7 @@ def reports():
     if 'user_type' not in session:
         return render_template('/pages/reports.html', user_type='')
 
-    query = 0
+    query = []
     user_type = session['user_type']
     if user_type == 'user':
         query = report.get_report_by_sender(users.get_user_id(session['username']))
