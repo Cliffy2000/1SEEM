@@ -1,7 +1,7 @@
 import os
 from flask import Flask, session, render_template, request, redirect, url_for
 
-from scripts import db
+from scripts import db, users
 
 
 app = Flask(__name__)
@@ -27,10 +27,12 @@ def login():
         password = request.form.get('password')
         
         user = users.get(username)
-        if user and user['password'] == password:
+        # if user and user['password'] == password:
+        user_check = users.authenticate_user(username, password)
+        if user_check:
             session['username'] = username
             session['user_type'] = user['type']
-            return redirect(url_for(('index')))
+            return redirect(url_for(('index')))   
 
         return render_template('/pages/login.html', show_login_box=False)
         
