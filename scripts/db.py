@@ -23,23 +23,23 @@ def select_school_info(filter=None):
 
     if 'district' in filter:
         district = filter['district']
-        conditions.append(f"name = '{district}'")
+        conditions.append(f"district = '{district}'")
 
     if 'type' in filter:
         type_cd = filter['type']
-        conditions.append(f"name = '{type_cd}'")
+        conditions.append(f"type = '{type_cd}'")
 
     if 'level' in filter:
         level = filter['level']
-        conditions.append(f"name = '{level}'")
+        conditions.append(f"main_level = '{level}'")
 
     if 'bus_no' in filter:
         bus_no = filter['bus_no']
-        conditions.append(f"name = '{bus_no}'")
+        conditions.append(f"bus_no = '{bus_no}'")
     
     if 'mrt' in filter:
         mrt = filter['mrt']
-        conditions.append(f"name = '{mrt}'")
+        conditions.append(f"mrt = '{mrt}'")
 
     if conditions:
         sql_query += " WHERE " + " AND ".join(conditions)

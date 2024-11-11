@@ -80,6 +80,8 @@ def search():
             'mrt': request.form.get('search_mrt') or None 
         })
         
+        print(query)
+        
         formatted_query = [{
             'name': item['name'],
             'level': item['main_level'],
