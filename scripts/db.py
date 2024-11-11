@@ -21,28 +21,29 @@ def select_school_info(filter=None):
         school = filter['school']
         conditions.append(f"name = '{school}'")
 
-    if 'district' in filter:
+    if filter['district']:
         district = filter['district']
         conditions.append(f"district = '{district}'")
 
-    if 'type' in filter:
+    if filter['type']:
         type_cd = filter['type']
         conditions.append(f"type = '{type_cd}'")
 
-    if 'level' in filter:
+    if filter['level']:
         level = filter['level']
         conditions.append(f"main_level = '{level}'")
 
-    if 'bus_no' in filter:
+    if filter['bus_no']:
         bus_no = filter['bus_no']
         conditions.append(f"bus_numbers = '{bus_no}'")
     
-    if 'mrt' in filter:
+    if filter['mrt']:
         mrt = filter['mrt']
         conditions.append(f"mrt_stations = '{mrt}'")
 
     if conditions:
         sql_query += " WHERE " + " AND ".join(conditions)
+
 
     cursor.execute(sql_query)
     data = cursor.fetchall()

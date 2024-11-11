@@ -70,7 +70,7 @@ def submit_report():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     formatted_query = -1
-    if request.method == "POST":        
+    if request.method == "POST":
         query = db.select_school_info(filter={
             'school': request.form.get('search_school_name') or None,
             'district': request.form.get('search_distrct') or None,
@@ -79,9 +79,7 @@ def search():
             'bus_no': request.form.get('search_bus_no') or None,
             'mrt': request.form.get('search_mrt') or None 
         })
-        
-        print(query)
-        
+               
         formatted_query = [{
             'name': item['name'],
             'level': item['main_level'],
@@ -90,7 +88,9 @@ def search():
             'email': item['email']
         } for item in query]
         
-        if len(query) == 0:
+        print(query)
+        
+        if len(formatted_query) == 0:
             return render_template('/pages/search.html', query=formatted_query, text="No results found")
         
         return render_template('/pages/search.html', query=formatted_query)
