@@ -1,0 +1,11 @@
+<div class="login_box">
+    {% if session.get('user_type') == 'admin' or session.get('user_type') == 'user' %}
+    <div class="login_box_content" style="cursor: default;">
+        <div>Welcome, {{ session['username'] }}!</div>
+    </div>
+    {% else %}
+    <div class="login_box_content" onclick="window.location.href='/login'">
+        <div>Login</div>
+    </div>
+    {% endif %}
+</div>

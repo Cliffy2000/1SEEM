@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.index_page_background {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-image: url('/static/index_background.png'); 
+    background-size: cover; 
+    background-position: center; 
+    z-index: -1;
+}
+
+.index_page_logo {
+    display: flex; 
+    justify-content: center; 
+    margin-top: 75px;
+}
+
+.index_page_button_block {
+    height: 20%;
+    top: 65%;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8%;
+}
+
+.index_page_button {
+    width: 30%;
+    height: 70%;
+    background-color: rgb(206, 208, 218);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login_box {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_box_content {
+    width: 150px;
+    height: 40px;
+    background-color: rgb(185, 185, 185);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
