@@ -38,9 +38,9 @@ def reports():
 
     user_type = session['user_type']
     if user_type == 'user':
-        query = report.get_report_by_sender(session['username'])
+        query = report.get_report_by_sender(users.get_user_id(session['username']))
     elif user_type == 'admin':
-        query = report.get_report_by_receiver(session['username'])
+        query = report.get_report_by_receiver(users.get_user_id(session['username']))
     
     return render_template('/pages/reports.html', query=query, user_type=user_type)
 
