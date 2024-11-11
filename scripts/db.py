@@ -39,7 +39,7 @@ def select_school_info(filter=None):
     
     if 'mrt' in filter:
         mrt = filter['mrt']
-        conditions.append(f"mrt = '{mrt}'")
+        conditions.append(f"mrt_stations = '{mrt}'")
 
     if conditions:
         sql_query += " WHERE " + " AND ".join(conditions)
