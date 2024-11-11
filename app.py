@@ -45,6 +45,24 @@ def reports():
     return render_template('/pages/reports.html', query=query, user_type=user_type)
 
 
+@app.route('/submit_report', methods=['GET', 'POST'])
+def submit_report():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        receiver_name = request.form.get('receiver_name')
+        report_content = request.form.get('report_content')
+        user_id = session.get('user_id')
+        receiver_id = users.get_user_id(receiver_name)
+        
+        report.submit_report(user_id, receiver_id, report_content)
+        return redirect(url_for('reports'))
+
+    return render_template('submit_report.html')
+        
+
+
 @app.route('/search')
 def search():
     return render_template('/pages/search.html')

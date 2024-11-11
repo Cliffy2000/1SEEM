@@ -11,9 +11,9 @@ if __name__ == "__main__":
     # 
     # create_user("admin1", "admin", "admin1@m.com", "admin")
     # 
-    submit_report(2, 5, "report 1.1")
-    submit_report(2, 5, "report 1.2")
-    submit_report(2, 5, "report 1.3")
-    submit_report(3, 5, "report 2.1")
+    # submit_report(2, 5, "report 1.1")
+    # submit_report(2, 5, "report 1.2")
+    # submit_report(2, 5, "report 1.3")
+    # submit_report(3, 5, "report 2.1")
     
     pass
