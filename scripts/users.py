@@ -75,6 +75,24 @@ def delete_user(username):
         return False
 
 
-if __name__ == '__main__':
-    #create_user('test', 'test1234', 'test@gmail.com', 'user')
-    delete_user('test')
+def reset_user_table():
+    connection, cursor = connect_to_db()
+    
+    cursor.execute("DELETE FROM t_user_info;")
+    
+    cursor.execute("""
+        DO $$ 
+        BEGIN
+            IF NOT EXISTS (SELECT * FROM information_schema.columns 
+                           WHERE table_name='t_user_info' AND column_name='user_id') THEN
+                ALTER TABLE t_user_info
+                ADD COLUMN user_id SERIAL PRIMARY KEY;
+            END IF;
+        END $$;
+    """)
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
+    print("User table reset.")
