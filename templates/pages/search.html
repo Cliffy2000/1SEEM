@@ -6,6 +6,79 @@
 {% block content %}
 <div>Search For Schools</div>
 
+<h1>Search Page</h1>
+<form action="/search" method="post" id="search-form">
+    <div class="input-group">
+        <label for="search_school_name">Primary Search</label>
+        <input type="text" id="search_school_name" name="search_school_name" placeholder="Schoool name">
+    </div>
 
+    <div id="additional-fields" style="display: none;">
+        <div class="input-group">
+            <label for="search_distrct">District</label>
+            <input type="text" id="search_distrct" name="search_distrct" placeholder="District">
+        </div>
+        <div class="input-group">
+            <label for="search_type">Type</label>
+            <input type="text" id="search_type" name="search_type" placeholder="District">
+        </div>
+        <div class="input-group">
+            <label for="search_level">Level</label>
+            <input type="text" id="search_level" name="search_level" placeholder="Level">
+        </div>
+        <div class="input-group">
+            <label for="search_bus_no">Bus number</label>
+            <input type="text" id="search_bus_no" name="search_bus_no" placeholder="Bus number">
+        </div>
+        <div class="input-group">
+            <label for="search_mrt">MRT</label>
+            <input type="text" id="search_mrt" name="search_mrt" placeholder="search_mrt">
+        </div>
+    </div>
+
+    <button type="button" onclick="toggleAdditionalFields()">Toggle Additional Filters</button>
+    <button type="submit">Submit Search</button>
+</form>
+
+<script>
+    function toggleAdditionalFields() {
+        const additionalFields = document.getElementById('additional-fields');
+        
+        if (additionalFields.style.display === 'none' || additionalFields.style.display === '') {
+            additionalFields.style.display = 'block';
+        } else {
+            additionalFields.style.display = 'none';
+        }
+    }
+</script>
+
+<br><br><br>
+
+{% if text %}
+<div>{{ text }}!</div>
+
+{% else %}
+    {% if query|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    {% for header in query[0].keys() %}
+                        <th>{{ header | capitalize }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in query %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endif %}
 
 {% endblock %}

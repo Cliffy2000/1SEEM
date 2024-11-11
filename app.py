@@ -65,12 +65,35 @@ def submit_report():
         return redirect(url_for('reports'))
 
     return render_template('/pages/submit_report.html')
-        
 
 
-@app.route('/search')
+@app.route('/search', methods=['GET', 'POST'])
 def search():
-    return render_template('/pages/search.html')
+    formatted_query = -1
+    if request.method == "POST":        
+        query = db.select_school_info(filter={
+            'school': request.form.get('search_school_name') or None,
+            'district': request.form.get('search_distrct') or None,
+            'type': request.form.get('search_type') or None,
+            'level': request.form.get('search_level') or None,
+            'bus_no': request.form.get('search_bus_no') or None,
+            'mrt': request.form.get('search_mrt') or None 
+        })
+        
+        formatted_query = [{
+            'name': item['name'],
+            'level': item['main_level'],
+            'address': item['address'],
+            'tel_no': item['tel_no'],
+            'email': item['email']
+        } for item in query]
+        
+        if len(query) == 0:
+            return render_template('/pages/search.html', query=formatted_query, text="No results found")
+        
+        return render_template('/pages/search.html', query=formatted_query)
+    
+    return render_template('/pages/search.html', query=formatted_query, text="please enter a search condition")
 
 
 if __name__ == "__main__":
