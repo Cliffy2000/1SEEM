@@ -6,12 +6,12 @@
 {% block content %}
 <div>This is the reports page</div>
 
-{% if query %}
+{% if query != -1 %}
     {% if session.get('user_type') == 'admin' %}
         <div>Received Reports</div>
     {% else %}
         <div>Sent Reports</div>
-        <div class="create_report_button">
+        <div class="create_report_button" onclick="window.location.href='/submit_report'">
             <div>Create New Report</div>
         </div>
     {% endif %}
