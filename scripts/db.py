@@ -35,7 +35,7 @@ def select_school_info(filter=None):
 
     if 'bus_no' in filter:
         bus_no = filter['bus_no']
-        conditions.append(f"bus_no = '{bus_no}'")
+        conditions.append(f"bus_numbers = '{bus_no}'")
     
     if 'mrt' in filter:
         mrt = filter['mrt']
