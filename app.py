@@ -52,10 +52,13 @@ def submit_report():
     if 'username' not in session:
         return redirect(url_for('login'))
     
+    if session['user_type'] == 'admin':
+        return redirect(url_for('login'))
+    
     if request.method == 'POST':
         receiver_name = request.form.get('receiver_name')
         report_content = request.form.get('report_content')
-        user_id = session.get('user_id')
+        user_id = users.get_user_id(session.get('username'))
         receiver_id = users.get_user_id(receiver_name)
         
         report.submit_report(user_id, receiver_id, report_content)
