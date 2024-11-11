@@ -61,7 +61,7 @@ def submit_report():
         report.submit_report(user_id, receiver_id, report_content)
         return redirect(url_for('reports'))
 
-    return render_template('submit_report.html')
+    return render_template('/pages/submit_report.html')
         
 
 
