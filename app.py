@@ -31,6 +31,25 @@ def login():
     return render_template('/pages/login.html')
 
 
+@app.route('/create_user', methods=['GET', 'POST'])
+def create_user():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        email = request.form.get('email')
+        
+        user_check = users.check_user_exists(username)
+        if not user_check:
+            users.create_user(username, password, email)
+            session['username'] = username
+            session['user_type'] = 'admin'
+            return redirect(url_for(('index')))   
+
+        return render_template('/pages/create_user.html')
+        
+    return render_template('/pages/create_user.html')
+
+
 @app.route('/logout')
 def logout():
     session.pop('user_type', None)

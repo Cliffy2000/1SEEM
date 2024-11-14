@@ -1,9 +1,11 @@
 {% extends "/pages/base.html" %}
 
 
-{% block title %}create user page{% endblock %}
+{% block title %}Create user page{% endblock %}
 
 {% block content %}
+
+{% if not session.get('username') %}
 <div class="create-user-container">
     <h1>Login</h1>
     <form action="/login" method="post">
@@ -15,8 +17,16 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" class="login-button">Login</button>
+        <div class="input-group">
+            <label for="password">Email</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <button type="submit" class="login-button">Register</button>
     </form>
 </div>
+
+{% else %}
+<div>You are currently logged in.</div>
+{% endif %}
 
 {% endblock %}
