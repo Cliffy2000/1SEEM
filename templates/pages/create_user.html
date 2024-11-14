@@ -8,7 +8,7 @@
 {% if not session.get('username') %}
 <div class="create-user-container">
     <h1>Login</h1>
-    <form action="/login" method="post">
+    <form action="/create_user" method="post">
         <div class="input-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
