@@ -42,7 +42,7 @@ def create_user():
         if not user_check:
             users.create_user(username, password, email, "user")
             session['username'] = username
-            session['user_type'] = 'admin'
+            session['user_type'] = 'user'
             return redirect(url_for(('index')))   
 
         return render_template('/pages/create_user.html')
