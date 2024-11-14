@@ -40,7 +40,7 @@ def create_user():
         
         user_check = users.check_user_exists(username)
         if not user_check:
-            users.create_user(username, password, email)
+            users.create_user(username, password, email, "user")
             session['username'] = username
             session['user_type'] = 'admin'
             return redirect(url_for(('index')))   
