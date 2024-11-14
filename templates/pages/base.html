@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    {% if show_login_box is not defined or show_login_box %}
-        {% include "components/login_box.html" %}
-    {% endif %}
+    <div class="navbar">
+        {% if request.path == '/' %}
+            {% include "components/login_box.html" %}
+        {% elif request.path == '/login' %}
+            {% include "components/return_button.html" %}
+        {% else %}
+            {% include "components/return_button.html" %}
+            {% include "components/login_box.html" %}
+        {% endif %}
+    </div>
     <main>
         {% block content %}{% endblock %}
     </main>

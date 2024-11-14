@@ -1,11 +1,11 @@
 <div class="login_box">
     {% if session.get('user_type') == 'admin' or session.get('user_type') == 'user' %}
-    <div class="login_box_content" onclick="logout()">
+    <div class="navbarButton" onclick="logout()">
         <div>Welcome, {{ session['username'] }}!</div>
         <div class="logout_tip">Click to logout</div>
     </div>
     {% else %}
-    <div class="login_box_content" onclick="window.location.href='/login'">
+    <div class="navbarButton" onclick="window.location.href='/login'">
         <div>Login</div>
     </div>
     {% endif %}
@@ -20,4 +20,4 @@
                 }
             })
     }
-    </script>
+</script>

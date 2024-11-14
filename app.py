@@ -26,9 +26,9 @@ def login():
             session['user_type'] = users.get_user_type(username)
             return redirect(url_for(('index')))   
 
-        return render_template('/pages/login.html', show_login_box=False)
+        return render_template('/pages/login.html')
         
-    return render_template('/pages/login.html', show_login_box=False)
+    return render_template('/pages/login.html')
 
 
 @app.route('/logout')
