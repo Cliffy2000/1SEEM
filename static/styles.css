@@ -66,3 +66,23 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+
+.login_box_content .logout_tip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .login_box_content:hover .logout_tip {
+    visibility: visible;
+  }
