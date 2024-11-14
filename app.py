@@ -31,6 +31,13 @@ def login():
     return render_template('/pages/login.html', show_login_box=False)
 
 
+@app.route('/logout')
+def logout():
+    session.pop('user_type', None)
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+
 @app.route('/reports')
 def reports():
     query = -1

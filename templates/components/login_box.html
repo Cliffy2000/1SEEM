@@ -1,6 +1,6 @@
 <div class="login_box">
     {% if session.get('user_type') == 'admin' or session.get('user_type') == 'user' %}
-    <div class="login_box_content" style="cursor: default;">
+    <div class="login_box_content" onclick="logout()">
         <div>Welcome, {{ session['username'] }}!</div>
     </div>
     {% else %}
@@ -9,3 +9,14 @@
     </div>
     {% endif %}
 </div>
+
+<script>
+    function logout() {
+        fetch('/logout')
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                }
+            })
+    }
+    </script>
