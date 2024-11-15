@@ -75,7 +75,7 @@ def reports():
             for row in query:
                 transformed_row = {
                     'Report ID': row['id'], 
-                    'Receiver Name': users.get_user_name(row['receiver_id']), 
+                    'Receiver ID': row['receiver_id'], 
                     'Content': row['content'],
                     'Created Date': row['created_time']
                 }
