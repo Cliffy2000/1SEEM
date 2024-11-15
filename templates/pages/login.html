@@ -6,20 +6,112 @@
 {% block content %}
 <div class="login-container">
     <h1>Login</h1>
-    <form action="/login" method="post">
-        <div class="input-group">
+    <form action="/login" method="post" id="login-form">
+        <div class="login-input-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
         </div>
-        <div class="input-group">
+        <div class="login-input-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" class="login-button">Login</button>
     </form>
 </div>
-<div class="create-user-button" style="margin-top: 20px;" onclick="window.location.href='/create_user'">
-    <div>Create User</div>
+<div class="login-button-container">
+    <button type="submit" form="login-form" class="login-button">Login</button>
+    <button class="create-user-button" onclick="window.location.href='/create_user'">Create User</button>
 </div>
+
+
+<style>
+    /* General Reset */
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Page Layout */
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .login-container h1 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Input Groups */
+    .login-input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .login-input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .login-input-group input[type="text"],
+    .login-input-group input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Button Container */
+    .login-button-container {
+        max-width: 400px;
+        margin: 20px auto 0;
+        text-align: center;
+    }
+
+    /* Login Button */
+    .login-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .login-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Create User Button (Smaller) */
+    .create-user-button {
+        width: auto;
+        padding: 8px 16px;
+        font-size: 0.9em;
+        color: #fff;
+        background-color: #6c757d;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .create-user-button:hover {
+        background-color: #5a6268;
+    }
+
+</style>
+
+
 
 {% endblock %}

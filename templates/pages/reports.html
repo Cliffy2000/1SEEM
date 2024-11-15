@@ -4,42 +4,152 @@
 {% block title %}reports page{% endblock %}
 
 {% block content %}
-<div>This is the reports page</div>
+<div class="reports-container">
 
-{% if query != -1 %}
-    {% if session.get('user_type') == 'admin' %}
-        <div>Received Reports</div>
-    {% else %}
-        <div>Sent Reports</div>
-        <div class="create_report_button" onclick="window.location.href='/submit_report'">
-            <div>Create New Report</div>
-        </div>
-    {% endif %}
+    {% if query != -1 %}
+        {% if session.get('user_type') == 'admin' %}
+            <div class="reports-heading">Received Reports</div>
+        {% else %}
+            <div class="reports-heading">Sent Reports</div>
+            <div class="create_report_button" onclick="window.location.href='/submit_report'">
+                <div>Create New Report</div>
+            </div>
+        {% endif %}
 
-    {% if query|length > 0 %}
-    <table>
-        <thead>
-            <tr>
-                {% for header in query[0].keys() %}
-                    <th>{{ header | capitalize }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in query %}
+        {% if query|length > 0 %}
+        <table>
+            <thead>
                 <tr>
-                    {% for value in row.values() %}
-                        <td>{{ value }}</td>
+                    {% for header in query[0].keys() %}
+                        <th>{{ header | capitalize }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for row in query %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    {% else %}
+        <p class="login-prompt">Please login to use the features on this page.</p>
     {% endif %}
+</div>
 
-{% else %}
-<p>Please login to use the features in this page.</p>
+<style>
+    /* General Reset */
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-{% endif %}
+    /* Reports Container */
+    .reports-container {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .reports-container > div:first-child {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Reports Heading */
+    .reports-heading {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Login Prompt */
+    .login-prompt {
+        font-size: 1em;
+        color: #540000;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Create Report Button */
+    .create_report_button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px 0;
+        font-size: 1em;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .create_report_button:hover {
+        background-color: #0056b3;
+    }
+
+    .create_report_button > div {
+        text-align: center;
+    }
+
+    /* Reports Table */
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        background-color: #f4f4f4;
+    }
+
+    table th:nth-child(1), table td:nth-child(1) {
+        width: 10%;
+    }
+
+    table th:nth-child(2), table td:nth-child(2) {
+        width: 20%;
+    }
+
+    table th:nth-child(3), table td:nth-child(3) {
+        width: 50%;
+    }
+
+    table th:nth-child(4), table td:nth-child(4) {
+        width: 20%;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    table th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+</style>
+
 
 {% endblock %}

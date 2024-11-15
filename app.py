@@ -69,6 +69,28 @@ def reports():
     elif user_type == 'admin':
         query = report.get_report_by_receiver(users.get_user_id(session['username']))
     
+    if query != -1 and len(query) > 0:
+        transformed_query = []
+        if user_type == 'user':
+            for row in query:
+                transformed_row = {
+                    'Report ID': row['id'], 
+                    'Receiver Name': users.get_user_name(row['receiver_id']), 
+                    'Content': row['content'],
+                    'Created Date': row['created_time']
+                }
+                transformed_query.append(transformed_row)
+        elif user_type == 'admin':
+            for row in query:
+                transformed_row = {
+                    'Report ID': row['id'], 
+                    'Sender ID': row['sender_id'], 
+                    'Content': row['content'],
+                    'Created Date': row['created_time']
+                }
+                transformed_query.append(transformed_row)
+        query = transformed_query
+    
     return render_template('/pages/reports.html', query=query, user_type=user_type)
 
 
@@ -113,14 +135,12 @@ def search():
             'email': item['email']
         } for item in query]
         
-        print(query)
-        
         if len(formatted_query) == 0:
             return render_template('/pages/search.html', query=formatted_query, text="No results found")
         
         return render_template('/pages/search.html', query=formatted_query)
     
-    return render_template('/pages/search.html', query=formatted_query, text="please enter a search condition")
+    return render_template('/pages/search.html', query=formatted_query, text="Please enter a search condition")
 
 
 if __name__ == "__main__":

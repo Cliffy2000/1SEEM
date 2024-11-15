@@ -6,17 +6,101 @@
 
 
 <h1>Submit a New Report</h1>
-<form action="{{ url_for('submit_report') }}" method="post">
-    <div class="input-group">
+<form action="{{ url_for('submit_report') }}" method="post" id="submit_report_form">
+    <div class="report-input-group">
         <label for="receiver_name">receiver_name</label>
         <input type="text" id="receiver_name" name="receiver_name" required>
     </div>
-    <div class="input-group">
+    <div class="report-input-group">
         <label for="report_content">Report Content</label>
         <textarea id="report_content" name="report_content" required></textarea>
     </div>
-    <button type="submit" class="submit-button">Submit Report</button>
 </form>
+
+<div class="report-button-container">
+    <button type="submit" form="submit_report_form" class="submit-button">Submit Report</button>
+</div>
+
+<style>
+    /* General Reset */
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Report Form Container */
+    .report-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .report-container h1 {
+        font-size: 2em;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Input Groups */
+    .report-input-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .report-input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .report-input-group input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .report-input-group textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical; /* Allows vertical resizing */
+    }
+
+    /* Button Container */
+    .report-button-container {
+        max-width: 600px;
+        margin: 20px auto 0;
+        text-align: center;
+    }
+
+    /* Submit Button */
+    .submit-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
 
 
 {% endblock %}
